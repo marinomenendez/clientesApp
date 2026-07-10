@@ -26,21 +26,19 @@
     <input class="form-control mb-2" [(ngModel)]="client.email" placeholder="Email" type="email">
     <input class="form-control mb-2" [(ngModel)]="client.phone" placeholder="Teléfono">
 
-    <select class="form-control mb-2" (change)="cargarProvinciasPorComunidad($event)">
+<!--     <select class="form-control mb-2" [(ngModel)]="client.idComunidadAutonoma" (change)="cargarProvinciasPorComunidad($event)">
         <option value="" >Seleccione una comunidad autónoma...</option>
         <option *ngFor="let ccaa of comunidades" [value]="ccaa.id">
           {{ ccaa.nombre }}
         </option> 
     </select>
 
-    *{{provinciasFiltradas}}*
-    
-    <select class="form-control mb-2">
+    <select class="form-control mb-2" [(ngModel)]="client.idProvincia">
       <option value="">Seleccione una provincia...</option>
       <option *ngFor="let prov of provinciasFiltradas" [value]="prov.id">
         {{ prov.nombre }}
       </option>
-    </select>
+    </select> -->
     <br/>
     <br/>
 

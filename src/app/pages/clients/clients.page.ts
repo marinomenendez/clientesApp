@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 import { Clients } from 'src/app/services/clients';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { Auth } from 'src/app/services/auth';
 
 @Component({
   selector: 'app-clients',
@@ -16,7 +17,7 @@ export class ClientsPage {
 
   clients: any[] = [];
 
-  constructor( private service: Clients ) { }
+  constructor( private service: Clients, private auth: Auth, private router: Router ) { }
 
   async ionViewWillEnter() {
     this.clients = await this.service.getClients();
@@ -32,6 +33,12 @@ export class ClientsPage {
 
       this.clients = await this.service.getClients();
     }
+  }
+
+  async salir() {
+    await this.auth.logout();
+    alert("Sesión cerrada");
+    this.router.navigate( ['/home'] );
   }
 
 }

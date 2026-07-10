@@ -20,8 +20,8 @@ export class EditClientPage {
     name: '',
     email: '',
     phone: '',
-    idComunidadAutonoma: 0,
-    idProvincia: 0
+    //idComunidadAutonoma: 0,
+    //idProvincia: 0
   };
 
   mensajeValidacion:string = '';
