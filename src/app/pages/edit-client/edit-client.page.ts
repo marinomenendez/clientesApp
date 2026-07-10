@@ -19,7 +19,9 @@ export class EditClientPage {
   client: Client = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    idComunidadAutonoma: 0,
+    idProvincia: 0
   };
 
   mensajeValidacion:string = '';
