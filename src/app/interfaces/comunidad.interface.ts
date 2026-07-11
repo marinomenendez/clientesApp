@@ -1,4 +1,6 @@
 export interface Comunidad {
-  id: number;
+  // id: number;
+  // nombre: string;
+  id_comunidad: number;
   nombre: string;
 }

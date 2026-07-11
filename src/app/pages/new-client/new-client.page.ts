@@ -21,28 +21,34 @@ export class NewClientPage {
     name:'',
     email:'',
     phone:'',
-    //idComunidadAutonoma: 0,
-    //idProvincia: 0
+    comunidad: null,
+    provincia: null
   };
 
   mensajeValidacion:string = '';
 
-  comunidades: Comunidad[] = [
-    { id: 1, nombre: 'Comunidad de Madrid' },
+  comunidades: Comunidad[] = [];
+  /*  [
+    { id: 1, nombre: 'Aragón' },
     { id: 2, nombre: 'Cataluña' }
-  ];
+  ]; */
   
-  todasProvincias: Provincia[] = [
-    { id: 1, nombre: 'Madrid', idComunidad: 1 },
-    { id: 2, nombre: 'Barcelona', idComunidad: 2 },
-    { id: 3, nombre: 'Girona', idComunidad: 2 }
-  ];
+  provincias: Provincia[] = []
+  //  [
+  //   { id: 1, nombre: 'Huesca', idComunidad: 1 },
+  //   { id: 4, nombre: 'Zaragoza', idComunidad: 1 },
+  //   { id: 5, nombre: 'Teruel', idComunidad: 1 },
+  //   { id: 2, nombre: 'Barcelona', idComunidad: 2 },
+  //   { id: 3, nombre: 'Girona', idComunidad: 2 }
+  // ];
 
   provinciasFiltradas: Provincia[] = [];
 
   constructor(private service: Clients, private router: Router) { }
 
   async ionViewWillEnter() {
+    this.comunidades = await this.service.getComunidadesAutonomas();
+    this.provincias = await this.service.getProvincias();
   }
 
   async save() {
@@ -62,10 +68,14 @@ export class NewClientPage {
     console.log("Cargando provincias de la comunidad : "+idComunidad);
     
     // Filtramos los municipios que corresponden a esa provincia
-    this.provinciasFiltradas = this.todasProvincias.filter(
-      (prv) => prv.idComunidad === idComunidad
+    this.provinciasFiltradas = this.provincias.filter(
+      //(prv) => prv.idComunidad === idComunidad
+      (prv) => prv.id_comunidad === idComunidad
+
     );
 
+    // console.log("provincias: ");
+    // console.log(this.provinciasFiltradas);
   }
 
 }

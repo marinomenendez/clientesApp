@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { supabase } from '../config/supabase';
 import { Client } from '../interfaces/client.interface';
+import { Comunidad } from 'src/app/interfaces/comunidad.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,13 @@ export class Clients {
       error
     } = await supabase
       .from('clients')
-      .select('*')
+      //.select('*')
+        .select(`
+          id,
+          name,
+          email,
+          phone
+        `)
       .order('id');
     if (error) {
       throw error;
@@ -71,5 +78,38 @@ export class Clients {
       throw error;
     }
   }
+
+  async getComunidadesAutonomas() {
+    //const datos: Comunidad[]=[];
+    const {
+      data,
+      error
+    } = await supabase
+      .from('comunidades')
+      .select('*')
+      .order('id_comunidad');
+    if (error) {
+      throw error;
+    }
+    console.log(data);
+    //datos = JSON.stringify(data);
+    //return JSON.stringify(data);
+    return data;
+  }
+
+  async getProvincias() {
+    const {
+      data,
+      error
+    } = await supabase
+      .from('provincias')
+      .select('*')
+      .order('id_provincia');
+    if (error) {
+      throw error;
+    }
+    return data;
+  }
+
 
 } //fin clase
